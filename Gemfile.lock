@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-each (0.4.1)
+    dorian-sort-csv (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -95,7 +95,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dorian-each!
+  dorian-sort-csv!
   dorian-times
   rspec
   rubocop-rails-omakase
