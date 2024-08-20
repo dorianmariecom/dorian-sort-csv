@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "dorian-sort-csv"
-  s.version = "0.0.2"
+  s.version = File.read("VERSION").strip
   s.summary = "sorts csv by keys"
   s.description = s.summary
   s.authors = ["Dorian Marié"]
