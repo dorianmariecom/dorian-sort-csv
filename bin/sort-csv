@@ -4,12 +4,21 @@
 require "dorian/arguments"
 require "csv"
 
-parsed = Dorian::Arguments.parse(
-  integers: { alias: :i },
-  headers: { alias: :h },
-  version: { alias: :v },
-  help: { alias: :h }
-)
+parsed =
+  Dorian::Arguments.parse(
+    integers: {
+      alias: :i
+    },
+    headers: {
+      alias: :h
+    },
+    version: {
+      alias: :v
+    },
+    help: {
+      alias: :h
+    }
+  )
 
 abort parsed.help if parsed.options.help
 
@@ -21,18 +30,15 @@ inputs = parsed.files.map { |file| File.read(file) }
 inputs = [$stdin.each_line.to_a.map(&:strip).join("\n")] if inputs.empty?
 headers = parsed.options.headers
 
-keys = parsed.arguments.map do |key|
-  key.to_i.to_s == key ? key.to_i : key
-end
+keys = parsed.arguments.map { |key| key.to_i.to_s == key ? key.to_i : key }
 
 inputs.each do |input|
   input = CSV.parse(input, headers:)
 
-  rows = input.sort_by do |row|
-    keys.map do |key|
-      parsed.options.integers ? row[key].to_i : row[key]
+  rows =
+    input.sort_by do |row|
+      keys.map { |key| parsed.options.integers ? row[key].to_i : row[key] }
     end
-  end
 
   puts(
     CSV.generate do |output|
