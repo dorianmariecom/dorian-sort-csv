@@ -1,28 +1,35 @@
-# `dorian-each`
+# `dorian-sort-csv`
 
-Evaluates some code on each line of the input
+Sort CSV rows by one or more keys.
 
-e.g. `ls -l | each "puts l.split.first"`
-
-### Install
+## Install
 
 ```bash
-gem install dorian-each
+gem install dorian-sort-csv
 ```
 
-Or as part of my other gems:
+Also included in the aggregate gem:
 
 ```bash
 gem install dorian
 ```
 
-### Usage
-
-From my history:
+## Usage
 
 ```bash
-pbpaste | each "puts line.split('-')[1].split.first" | uniq
-git grep Thing test/ | grep isocode | each "puts l.split(':').first" | sort | uniq | xvim
-cat file.csv | each "code, name = l.split(\"\\t\"); if code.include?(','); puts code; else; puts code.gsub(' ', '') + ',' + name; end"
-git grep thing | grep " doc " | each "puts l.split(':').first" | xvim
+sort-csv [options] [file ...] key [key ...]
+```
+
+Run `sort-csv -h` for generated option details and `sort-csv -v` for the installed version.
+
+## Notes
+
+- Use `--headers` for headered CSV and `--integers`/`-i` for numeric comparisons.
+
+## Examples
+
+### Sort by an integer id column
+
+```bash
+sort-csv --headers --integers users.csv id
 ```
