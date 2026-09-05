@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-sort-csv (2.0.1)
+    dorian-sort-csv (2.0.2)
       csv (>= 3.3.6, < 4)
       dorian-arguments (>= 2.0.1, < 3)
 
